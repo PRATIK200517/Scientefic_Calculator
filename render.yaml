@@ -1,0 +1,26 @@
+services:
+  - type: web
+    name: calculator-backend
+    env: dotnet
+    rootDir: CalculatorBackend
+    buildCommand: dotnet publish -c Release -o output
+    startCommand: dotnet output/CalculatorBackend.dll
+    envVars:
+      - key: ASPNETCORE_ENVIRONMENT
+        value: Production
+      - key: ASPNETCORE_URLS
+        value: http://*:$PORT
+    plan: free
+    autoDeploy: true
+
+  - type: web
+    name: calculator-frontend
+    env: static
+    rootDir: frontend
+    buildCommand: npm install && npm run build
+    staticPublishPath: build
+    envVars:
+      - key: REACT_APP_API_URL
+        value: https://calculator-backend.onrender.com/api
+    plan: free
+    autoDeploy: true
