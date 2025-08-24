@@ -1,6 +1,4 @@
-const API_BASE_URL = process.env.NODE_ENV === 'production' 
-  ? 'https://calculator-backend.onrender.com/api/calculator'
-  : 'http://localhost:5231/api/calculator';
+const API_BASE_URL = 'http://localhost:5000/api/calculator';
 
 export interface CalculationRequest {
   expression: string;
